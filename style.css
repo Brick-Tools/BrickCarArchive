@@ -1,0 +1,32 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    font-family: 'Roboto Mono';
+}
+h1, h2 {
+    margin: 4px;
+    color: gray;
+}
+img {
+    margin: -1px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.overflowAuto {
+    overflow: auto;
+}
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.p4 {
+    padding: 1rem;
+}
