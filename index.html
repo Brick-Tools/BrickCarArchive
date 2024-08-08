@@ -1,16 +1,125 @@
+<!DOCTYPE html>
+<html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Brick Car Archive</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-<body>
-    <div class="flex">
-        <div class="center">
-            <h1>Site on To-Do List</h1>
-        </div>
-        <div class="center">
-            <h2>will be a place to find LEGO cars</h2>
-        </div>
-        <div class="overflowAuto center p4">
-            <img src="https://www.lego.com/cdn/cs/set/assets/blt4f2ab1315187d12e/60420.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1" alt="">
-        </div>
+
+<body>  
+  <div class="title">
+  <h1>Brick Car Archive | TEST SITE</h1>
+  </div>
+  
+  <template id="card-template">
+    <div class="card selectable" id="">
+      <div class="img-container center">
+        <img class="card-img" src="">
+        <img class="card-img-bk" src="" hidden="true">
+      </div>
+
+      <div class="view-btns center">
+        <button type="button" class="ft-view-btn selectable" onclick="toggleActiveView(this)"></button>
+        <button type="button" class="bk-view-btn selectable" onclick="toggleActiveView(this)"></button>
+      </div>
+      <div class="name">
+        <h2 class="card-name">model</h2>
+        <br>
+        <h3><a class="card-designer" href="" target="_blank">designer</a></h3>
+      </div>
+
+      <br>
+      <a class="card-gallery" href="" target="_blank">Gallery</a>
+      <a class="card-instructions" href="#" target="_blank">Instructions</a>
+      <a class="card-3d" href="#" target="_blank">3D View</a>
     </div>
+  </template>
+
+  <div class="contentGrid">
+
+    <!-- MARK: left -->
+    <div class="infoCol">
+      <!-- search bar -->
+      <div class="formContainer">
+        <form> <!-- action="/action_page.php" -->
+          <input type="text" placeholder="Discover . . ." name="search">
+          <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+        </form>
+      </div>
+
+      <div class="make-model-select">
+        <select name="make-select" id="make-select">
+          <option value="make">Makes</option>
+        </select>
+        <br>
+        <select name="model-select" id="model-select">
+          <option value="model">Models</option>
+        </select>
+      </div>
+
+      <p>Scale:
+        <br>
+        <label for="min-scale">1:</label>
+        <input type="number" class="scale-limit" id="min-scale" name="min-scale">
+        <label for="max-scale">to 1:</label>
+        <input type="number" class="scale-limit" id="max-scale" name="max-scale">
+      </p>
+
+      <br>
+
+      <p>Designers:
+        <br>
+        <input type="checkbox" id="" name="lego" value="">
+        <label for="lego">LEGO</label>
+        <br>
+        <input type="checkbox" id="" name="designer2" value="">
+        <label for="designer">Designer1</label>
+        <br>
+        <input type="checkbox" id="" name="designer3" value="">
+        <label for="designer">Designer2</label>
+      </p>
+
+
+      <!-- end left -->
+    </div>
+
+    <!-- MARK: mid -->
+    <div class="browserCol">
+      <!-- items -->
+      <div class="content" id="cards-container">
+
+      </div>
+    </div>
+
+    <!-- MARK: right -->
+    <div class="detailsCol">
+      <h2>Details</h2>
+      <div class="center">
+        <div class="details-media">
+          <img src="https://www.netcarshow.com/Mercedes-Benz-SL63_S_AMG_E_Performance-2024-1600-02.jpg" alt="">
+          <br>
+          <div class="mecaFrame">
+            <iframe frameborder="0" height="480" width="640" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" onmousewheel="" src="https://mecabricks.com/en/player/b82xVq67v1z"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="model-info">
+        <hr>
+        <p class="model-scale">Scale: 1:27</p>
+        <p class="model-make">Make: Mercedes</p>
+        <p class="model-model">Model: AMG SL 63</p>
+        <p class="model-year">Year: 2024</p>
+        <a class="designer-instagram button" href="" target="_blank">Website</a>
+        <a class="designer-instagram button" href="" target="_blank">Youtube</a>
+        <a class="designer-instagram button" href="" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
 </body>
+
+</html>
