@@ -28,6 +28,11 @@ html {
   justify-content: center;
 }
 
+.infoCol {
+  max-width: 16em;
+  /* border: 1px solid rebeccapurple; */
+}
+
 .infoCol form {
   /* display: grid; */
   /* place-items: center; */
@@ -194,14 +199,15 @@ html {
   cursor: auto;
 }
 .name:after {
-  width: autorebeccapurple;
+  width: auto;
   pointer-events: none;
   position: absolute;
   bottom: 0;
   height: 100%;
   width: 100%;
   content: "";
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 85%, rgba(0, 0, 0, 1) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 70%, rgb(0, 0, 0) 83%);
+  /* background-color: blue; */
 }
 
 /* .detailsCol {

@@ -1,5 +1,35 @@
 [
   {
+    "id":             769341,
+    "name":           "Ferrari F40",
+    "make":           "Ferrari",
+    "model":          "F40",
+    "year":           null,
+    "author":         "LEGO",
+    "instructions":   "https://www.lego.com/en-us/service/buildinginstructions/76934",
+    "purchase":       "https://www.lego.com/en-us/product/ferrari-f40-supercar-76934",
+    "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blt7695c868f384e19e/76934_WEB_PRI_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
+    "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt9e01e31e3ca2c3f6/76934_WEB_SEC03_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
+    "scale":          null,
+    "mecabricks":     "0DvYkKZ829e",
+    "gallery":        ["https://www.lego.com/en-us/product/ferrari-f40-supercar-76934?galleryOpen=true&galleryView=0"]
+  },
+  {
+    "id":             769351,
+    "name":           "NASCAR Next Gen Chevrolet Camaro ZL1",
+    "make":           "Chevrolet ",
+    "model":          "NASCAR Next Gen Camaro ZL1",
+    "year":           null,
+    "author":         "LEGO",
+    "instructions":   "https://www.lego.com/en-us/service/buildinginstructions/76935",
+    "purchase":       "https://www.lego.com/en-us/product/nascar-next-gen-chevrolet-camaro-zl1-76935",
+    "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blte8a5c2a3ee5aae96/76935_Prod.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
+    "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt92cd73a1061df36c/76935_WEB_SEC03_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
+    "scale":          null,
+    "mecabricks":     "",
+    "gallery":        ["https://www.lego.com/en-us/product/nascar-next-gen-chevrolet-camaro-zl1-76935?galleryOpen=true&galleryView=0"]
+  },
+  {
     "id":             769241,
     "name":           "Mercedes-AMG SL 63",
     "make":           "Mercedes",
@@ -11,7 +41,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/bltbc71c879c160329c/76924.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt9c09a57b3e1bff50/76924_alt4.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "b82xVq67v1z",
+    "mecabricks":     "b82xVq67v1z",
     "gallery":        ["https://www.lego.com/en-us/product/mercedes-amg-g-63-mercedes-amg-sl-63-76924?galleryOpen=true&galleryView=0"]
   },
   {
@@ -22,11 +52,11 @@
     "year":           null,
     "author":         "LEGO",
     "instructions":   "https://www.lego.com/en-us/service/buildinginstructions/76924",
-    "purchase":"      ttps://www.lego.com/en-us/product/mercedes-amg-g-63-mercedes-amg-sl-63-76924",
+    "purchase":       "https://www.lego.com/en-us/product/mercedes-amg-g-63-mercedes-amg-sl-63-76924",
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/bltbc71c879c160329c/76924.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "",
     "scale":          27,
-    "mecabricks":        "b82xVq67v1z",
+    "mecabricks":     "b82xVq67v1z",
     "gallery":        ["https://www.lego.com/en-us/product/mercedes-amg-g-63-mercedes-amg-sl-63-76924?galleryOpen=true&galleryView=0"]
   },
   {
@@ -41,7 +71,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blt31e97d388b0b1d60/76923_alt2.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt58f2a0621fe52940/76923_alt4.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "LyjWJ7Xk2Jr",
+    "mecabricks":     "LyjWJ7Xk2Jr",
     "gallery":        ["https://www.lego.com/en-us/product/lamborghini-lambo-v12-vision-gt-super-car-76923?galleryOpen=true&galleryView=0"]
   },
   {
@@ -56,7 +86,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/bltbcc306ec64d4e9f0/76920.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt6c50e72ff233c0b6/76920_WEB_SEC04_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          30,
-    "mecabricks":        "eDvVgmd5aBR",
+    "mecabricks":     "eDvVgmd5aBR",
     "gallery":        ["https://www.lego.com/en-us/product/ford-mustang-dark-horse-sports-car-76920?galleryOpen=true&galleryView=0"]
   },
   {
@@ -71,7 +101,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blt77f702cad64ba675/76922_WEB_SEC02_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blta3b1b6c875f9e0c2/76922_WEB_SEC03_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "GVjKWdnmjnz",
+    "mecabricks":     "GVjKWdnmjnz",
     "gallery":        ["https://www.lego.com/en-us/product/bmw-m4-gt3-bmw-m-hybrid-v8-race-cars-76922?galleryOpen=true&galleryView=0"]
   },
   {
@@ -86,7 +116,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blt77f702cad64ba675/76922_WEB_SEC02_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blta3b1b6c875f9e0c2/76922_WEB_SEC03_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "GVjKWdnmjnz",
+    "mecabricks":     "GVjKWdnmjnz",
     "gallery":        ["https://www.lego.com/en-us/product/bmw-m4-gt3-bmw-m-hybrid-v8-race-cars-76922?galleryOpen=true&galleryView=0"]
   },
   {
@@ -101,7 +131,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/bltf69c704e133f3955/76921.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt14c1b99f8c056aed/76921_WEB_SEC04_NOBG.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "WRaZ0nV5jpZ",
+    "mecabricks":     "WRaZ0nV5jpZ",
     "gallery":        ["https://www.lego.com/en-us/product/audi-s1-e-tron-quattro-race-car-76921?galleryOpen=true&galleryView=0"]
   },
   {
@@ -116,7 +146,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blt504477796607bd27/76925.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt2715cd56b166e033/76925_alt2.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "",
+    "mecabricks":     "",
     "gallery":        ["https://www.lego.com/en-us/product/aston-martin-safety-car-amr23-76925?galleryOpen=true&galleryView=0"]
   },
   {
@@ -131,7 +161,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/bltdb96303299d9fdd7/76925_alt3.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt2715cd56b166e033/76925_alt2.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "LyjWJ1B52Jr",
+    "mecabricks":     "LyjWJ1B52Jr",
     "gallery":        ["https://www.lego.com/en-us/product/aston-martin-safety-car-amr23-76925?galleryOpen=true&galleryView=0"]
   },
   {
@@ -146,7 +176,7 @@
     "imageFront":     "https://www.lego.com/cdn/cs/set/assets/blt1dbce945ebf9831b/76919_alt2.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "imageBack":      "https://www.lego.com/cdn/cs/set/assets/blt1a6f47a83022ba00/76919_alt4.png?format=webply&fit=bounds&quality=75&width=1200&height=1200&dpr=1",
     "scale":          null,
-    "mecabricks":        "qxv47pdEjdJ",
+    "mecabricks":     "qxv47pdEjdJ",
     "gallery":        ["https://www.lego.com/en-us/product/2023-mclaren-formula-1-race-car-76919?galleryOpen=true&galleryView=0"]
   },
   {
@@ -161,7 +191,7 @@
     "imageFront":     "",
     "imageBack":      "",
     "scale":          null,
-    "mecabricks":        "",
+    "mecabricks":     "",
     "gallery":        [""]
   }
 ]

@@ -172,41 +172,53 @@ function update_data() {
       // console.log(dataDB);
       data = dataDB;
       getCars();
+      set_makes_models();
     })
     .catch(error => console.error("Error fetching data", error));
-  }
+}
 
 function set_makes_models() {
   makes = [];
   models = [];
+  makeSelect = document.getElementById("make-select")
+  modelSelect = document.getElementById("model-select")
+  makeSelect.options.length=1;
+  modelSelect.options.length=1;
+  makeSelect.options[0] = new Option("Makes", "", true, true)
+  modelSelect.options[0] = new Option("Models", "", true, true)
+
   data.forEach( car => {
-    if(!makes.includes(car.make)) { makes.push(car.make); }
-    if(!models.includes(car.model)) { models.push(car.model); }
+    if(!makes.includes(car.make) && car.make != "") {
+      makes.push(car.make);
+      // makeSelect.options[makeSelect.length] = new Option(car.make, car.make, false, false)
+    }
+    if(!models.includes(car.model) && car.model != "") {
+      models.push(car.model);
+      // modelSelect.options[modelSelect.length] = new Option(car.model, car.model, false, false)
+    }
   })
+  makes.sort();
+  models.sort();
+  makes.forEach( make => { makeSelect.options[makeSelect.length] = new Option(make, make, false, false) })
+  models.forEach( model => { modelSelect.options[modelSelect.length] = new Option(model, model, false, false) })
+
   // console.log(makes, models);
 }
 
-function getCars(make = null) {
+function getCars(make = "") {
   cars = []
-  // console.log("C", cars);
-  // fetch("data/car.json")
-    // .then(response => response.json())
-    // .then(dataDB => {
-      // console.log("C", dataDB);
-      // return dataDB
-      data.forEach(item => {
-        // console.log(item.name);
-        
-        if(item.make == make || make == null) {
-          cars.push(item)
-          // console.log(item);
-          }
-        });
-        gen_test_card(cars)
-    // })
-  // .catch(error => console.error("Error fetching data", error));
-  // console.log("()", cars);
-  // return cars;
+  if (make=="") {
+    console.log(make);
+  }
+  data.forEach(item => {
+    // console.log(item.name);
+    
+    if(item.make == make || make == "") {
+      cars.push(item)
+      // console.log(item);
+      }
+    });
+    generateCards(cars)
 }
 
 
@@ -236,7 +248,6 @@ function createCard(item) {
   const view3D = data.find(item => item.mecabricks === item.mecabricks);
   if(view3D) {
     template.querySelector('.card-3d').href = `https://mecabricks.com/en/models/${item.mecabricks}`;
-    // template.querySelector('.card-3d').href = `<iframe frameborder=\"0\" height=\"480\" width=\"640\" allowFullScreen webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\" onmousewheel=\"\" src=\"https://mecabricks.com/en/player/${view3D.mecabricks}\"></iframe>`;
   }
   // const listElement = template.querySelector('.card-list');
   // item.list.forEach(str => {
@@ -248,19 +259,15 @@ function createCard(item) {
   return template;
 }
 
-function generateCards() {
-  // cars = getCars()
-  // console.log("(BMW)", cars);
-  // console.log("data", data);
+function generateCards(db) {
   const container = document.getElementById('cards-container');
-  // cars = getCars("BMW")
-  data.forEach(item => {
+  container.innerHTML = "";
+  db.forEach(item => {
     // console.log(item);
     const card = createCard(item);
 
     imgFt = card.querySelector(".card-img");
     imgBk = card.querySelector(".card-imgBk");
-    cardContainer = card.querySelector(".card");
 
     card.querySelectorAll(".img-container, .card-img, .card-imgBk, .card, .name, .view-btns").forEach(element => {
       element.addEventListener("mouseup", function(event) {
@@ -269,9 +276,10 @@ function generateCards() {
             c.style.border = "none";
             c.style.margin = "20px";
           })
-        this.closest(".card").style.border = "1px solid white";
-        this.closest(".card").style.margin = "19px";
-        }
+          this.closest(".card").style.border = "1px solid white";
+          this.closest(".card").style.margin = "19px";
+          update_info_col(this.closest(".card"))
+      }
       })
     })
     
@@ -301,31 +309,12 @@ function toggleActiveView(btn) {
   }
 }
 
-function gen_test_card(db) {
-  const container = document.getElementById('cards-container');
-  container.innerHTML = "";
-  console.log(container.innerHTML);
-  // const card = createCard(getCars()[0])
-  db.forEach(car => {
-    card = createCard(car)
-    // const card = createCard({
-    //   "id":             0,
-    //   "name":           "name",
-    //   "make":           "make",
-    //   "model":          "model",
-    //   "year":           null,
-    //   "author":         "author",
-    //   "instructions":   "",
-    //   "purchase":       "",
-    //   "imageFront":     "https://placehold.co/256",
-    //   "imageBack":      "https://placehold.co/314",
-    //   "scale":          null,
-    //   "mecabricks":     "",
-    //   "gallery":        [""]
-    // });
-    container.append(card)
-  })
-  // generateCards()
+function update_info_col(card) {
+  mecaID = card.querySelector(".card-3d").href.substring(33);
+  col = document.getElementById("detailsCol")
+  if (mecaID != "" ) {
+    // col.querySelector(".iframe").src = "https://mecabricks.com/en/player/"+mecaID;
+  }
 }
 
 // window.onload = getCars();
@@ -335,3 +324,6 @@ window.onload = update_data;
 // window.onload = generateCards;
 
 // document.querySelector(".ft-view-btn")
+
+document.getElementById("make-select").addEventListener("change", function() { getCars(this.value); })
+// document.getElementById("model-select").addEventListener("change", function() { getCars(this.value); })
