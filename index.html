@@ -14,6 +14,7 @@
   <h1>Brick Car Archive | TEST SITE</h1>
   </div>
   
+  <!-- MARK: card -->
   <template id="card-template">
     <div class="card selectable" id="">
       <div class="img-container center">
@@ -50,6 +51,38 @@
         </form>
       </div>
 
+
+      <details id="make-details" class="designerDetails filterDetails">
+        <Summary>Makes</Summary>
+        <div class="toggleSlide center">
+          <div>Include</div>
+          <div>Exclude</div>
+        </div>
+
+        <ul id="makes-ul">
+          <li>
+            <input type="checkbox" id="lego2">
+            <label for="lego2">LEGO</label>
+          </li>
+        </ul>
+      </details>
+      <details id="model-details" class="designerDetails filterDetails">
+        <Summary>Models</Summary>
+        <div class="toggleSlide center">
+          <div>Include</div>
+          <div>Exclude</div>
+        </div>
+
+        <ul id="models-ul">
+          <li>
+            <input type="checkbox" id="lego3">
+            <label for="lego3">LEGO</label>
+          </li>
+        </ul>
+        <div>
+        </div>
+      </details>
+      
       <div class="make-model-select">
         <select name="make-select" id="make-select">
           <option value="make">Makes</option>
@@ -72,19 +105,32 @@
         <input type="number" class="scale-limit" id="max-scale" name="max-scale">
       </p>
 
-      <br>
 
-      <p>Designers:
-        <br>
-        <input type="checkbox" id="" name="lego" value="">
-        <label for="lego">LEGO</label>
-        <br>
-        <input type="checkbox" id="" name="designer2" value="">
-        <label for="designer">Designer1</label>
-        <br>
-        <input type="checkbox" id="" name="designer3" value="">
-        <label for="designer">Designer2</label>
-      </p>
+      <details class="designerDetails filterDetails">
+        <Summary>Designers</Summary>
+        <div class="toggleSlide center">
+          <div>Include</div>
+          <div>Exclude</div>
+        </div>
+        <ul>
+          <li>
+            <input type="checkbox" id="lego">
+            <label for="lego">LEGO</label>
+          </li>
+          <li>
+            <input type="checkbox" id="Opt. 1">
+            <label for="Opt. 1">Opt. 1</label>
+          </li>
+          <li>
+            <input type="checkbox" id="Opt. 2">
+            <label for="Opt. 2">Opt. 2</label>
+          </li>
+          <li>
+            <input type="checkbox" id="Opt. 3">
+            <label for="Opt. 3">Opt. 3</label>
+          </li>
+        </ul>
+      </details>
 
 
       <!-- end left -->

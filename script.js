@@ -151,17 +151,18 @@ data = [
   //   "gallery":        ["https://www.lego.com/en-us/product/2023-mclaren-formula-1-race-car-76919?galleryOpen=true&galleryView=0"]
   // }
 ];
-const designers = [
-  {
-    "author": "LEGO",
-    "verified": false,
-    "website": "https://www.lego.com",
-    "youtube": null,
-    "instagram": null
-  }
+designers = [
+  // {
+  //   "author": "LEGO",
+  //   "verified": false,
+  //   "website": "https://www.lego.com",
+  //   "youtube": null,
+  //   "instagram": null
+  // }
 ];
 
 function log_data() {
+  console.log(designers);
   console.log(data);
 }
 
@@ -171,8 +172,17 @@ function update_data() {
     .then(dataDB => {
       // console.log(dataDB);
       data = dataDB;
-      getCars();
-      set_makes_models();
+
+      fetch("data/designers.json")
+        .then(response => response.json())
+        .then(designerDB => {
+          designers = designerDB;
+
+          getCars();
+          set_makes_models();
+        })
+        .catch(error => console.error("Error fetching data", error));
+        
     })
     .catch(error => console.error("Error fetching data", error));
 }
@@ -181,7 +191,9 @@ function set_makes_models() {
   makes = [];
   models = [];
   makeSelect = document.getElementById("make-select")
+  makesUl     = document.getElementById("makes-ul")
   modelSelect = document.getElementById("model-select")
+  modelsUl     = document.getElementById("models-ul")
   makeSelect.options.length=1;
   modelSelect.options.length=1;
   makeSelect.options[0] = new Option("Makes", "", true, true)
@@ -199,8 +211,34 @@ function set_makes_models() {
   })
   makes.sort();
   models.sort();
-  makes.forEach( make => { makeSelect.options[makeSelect.length] = new Option(make, make, false, false) })
-  models.forEach( model => { modelSelect.options[modelSelect.length] = new Option(model, model, false, false) })
+  makes.forEach( make => {
+    makeSelect.options[makeSelect.length] = new Option(make, make, false, false)
+
+    li = document.createElement("li")
+    checkbox = document.createElement("input")
+    checkbox.type = "checkbox"
+    checkbox.id=make
+    label = document.createElement("label")
+    label.htmlFor=make
+    label.textContent=make
+    li.appendChild(checkbox)
+    li.appendChild(label)
+    makesUl.appendChild(li)
+  })
+  models.forEach( model => {
+    modelSelect.options[modelSelect.length] = new Option(model, model, false, false)
+  
+    li = document.createElement("li")
+    checkbox = document.createElement("input")
+    checkbox.type = "checkbox"
+    checkbox.id=model
+    label = document.createElement("label")
+    label.htmlFor=model
+    label.textContent=model
+    li.appendChild(checkbox)
+    li.appendChild(label)
+    modelsUl.appendChild(li)
+  })
 
   // console.log(makes, models);
 }
@@ -210,6 +248,8 @@ function getCars(make = "") {
   if (make=="") {
     console.log(make);
   }
+  console.log(data[""]);
+  
   data.forEach(item => {
     // console.log(item.name);
     
@@ -223,6 +263,8 @@ function getCars(make = "") {
 
 
 function createCard(item) {
+  
+  
   // Get the template content
   const template = document.getElementById('card-template').content.cloneNode(true);
   
@@ -233,9 +275,16 @@ function createCard(item) {
   template.querySelector('.card-name').textContent = item.name;
   template.querySelector('.card-designer').textContent = item.author || "Unknown";
       
+  
+  designers.forEach(d => {
+    if (item.author == d.author) {
+      designer = d;
+    }
+  });
+
   const website = designers.find(item => item.author === item.author);
   if(website) {
-    template.querySelector('.card-designer').href = item.website;
+    template.querySelector('.card-designer').href = designer.website;
   }
   const gallery = data.find(item => item.gallery === item.gallery);
   if(gallery) {

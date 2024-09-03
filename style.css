@@ -97,6 +97,56 @@ html {
   /* padding: 40px; */
 }
 
+/* Mark: search */
+.designerDetails {
+  /* background-color: #1a1a1a; */
+  border: .125em solid #1a1a1a;
+  border-radius: .25em;
+  padding: .5em;
+  margin: 1em 0.5em;
+}
+.designerDetails li,
+.designerDetails ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0.25em;
+  /* position: relative; */
+}
+/* .designerDetails checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+} */
+.designerDetails label{
+  /* position: relative; */
+  display: block;
+  margin: -.6em;
+  margin-left: 1.5em;
+  transform: translateY(-.59em);
+  /* margin-left: 24px; */
+  /* line-height: 1.5; */
+  /* vertical-align: middle; */
+  /* align-items: flex-start; */
+  
+}
+.designerDetails summary,
+.designerDetails input,
+.designerDetails label {
+  cursor: pointer;
+}
+/* .toggleSlide {
+  position: relative;
+} */
+.toggleSlide div {
+  padding: 0.25em;
+  margin: .5em 0;
+  border: 1px solid gray;
+}
+.toggleSlide div:hover {
+  background-color: rgb(42, 42, 42);
+  cursor: pointer;
+}
+
 
 /* MARK: card */
 /* .card {
