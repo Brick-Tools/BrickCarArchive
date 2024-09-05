@@ -54,49 +54,52 @@
 
       <details id="make-details" class="designerDetails filterDetails">
         <Summary>Makes</Summary>
-        <div class="toggleSlide center">
-          <div>Include</div>
-          <div>Exclude</div>
+        <div class="inline">
+          <div class="toggleSlide center">
+            <input type="radio" id="makeAnd" name="makeFilter" checked>
+            <label for="makeAnd"><abbr title="Exclude everything without these">And</abbr></label>
+
+            <input type="radio" id="makeOr" name="makeFilter">
+            <label for="makeOr"><abbr title="Inclclude all of these">Or</abbr></label>
+  
+            <input type="radio" id="makeNot" name="makeFilter">
+            <label for="makeNot"><abbr title="Exclude these">Not</abbr></label>
+          </div>
+
+          <div class="filters">
+            <button>Clear Selection</button>
+          </div>
         </div>
 
         <ul id="makes-ul">
-          <li>
-            <input type="checkbox" id="lego2">
-            <label for="lego2">LEGO</label>
-          </li>
         </ul>
       </details>
+
       <details id="model-details" class="designerDetails filterDetails">
         <Summary>Models</Summary>
-        <div class="toggleSlide center">
-          <div>Include</div>
-          <div>Exclude</div>
+        <div class="inline">
+          <div class="toggleSlide center">
+            <input type="radio" id="modelAnd" name="modelFilter" checked>
+            <label for="modelAnd"><abbr title="Exclude everything without these">And</abbr></label>
+
+            <input type="radio" id="modelOr" name="modelFilter">
+            <label for="modelOr"><abbr title="Inclclude all of these">Or</abbr></label>
+  
+            <input type="radio" id="modelNot" name="modelFilter">
+            <label for="modelNot"><abbr title="Exclude these">Not</abbr></label>
+          </div>
+
+          <div class="filters">
+            <button>Clear Selection</button>
+          </div>
         </div>
 
         <ul id="models-ul">
-          <li>
-            <input type="checkbox" id="lego3">
-            <label for="lego3">LEGO</label>
-          </li>
         </ul>
         <div>
         </div>
       </details>
       
-      <div class="make-model-select">
-        <select name="make-select" id="make-select">
-          <option value="make">Makes</option>
-          <option value="make">Makes</option>
-          <option value="make">Makes</option>
-        </select>
-        <br>
-        <select name="model-select" id="model-select">
-          <option value="model">Models</option>
-          <option value="model">Models</option>
-          <option value="model">Models</option>
-        </select>
-      </div>
-
       <p>Scale:
         <br>
         <label for="min-scale">1:</label>
@@ -105,17 +108,29 @@
         <input type="number" class="scale-limit" id="max-scale" name="max-scale">
       </p>
 
-
       <details class="designerDetails filterDetails">
         <Summary>Designers</Summary>
-        <div class="toggleSlide center">
-          <div>Include</div>
-          <div>Exclude</div>
+        <div class="inline">
+          <div class="toggleSlide center">
+            <input type="radio" id="designerAnd" name="designerFilter" checked>
+            <label for="designerAnd"><abbr title="Exclude everything without these">And</abbr></label>
+
+            <input type="radio" id="designerOr" name="designerFilter">
+            <label for="designerOr"><abbr title="Inclclude all of these">Or</abbr></label>
+  
+            <input type="radio" id="designerNot" name="designerFilter">
+            <label for="designerNot"><abbr title="Exclude these">Not</abbr></label>
+          </div>
+
+          <div class="filters">
+            <button>Clear Selection</button>
+          </div>
         </div>
-        <ul>
+
+        <ul id="designers-ul">
           <li>
-            <input type="checkbox" id="lego">
-            <label for="lego">LEGO</label>
+            <input type="checkbox" id="LEGO">
+            <label for="LEGO">LEGO</label>
           </li>
           <li>
             <input type="checkbox" id="Opt. 1">

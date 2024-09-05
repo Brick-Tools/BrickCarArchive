@@ -161,6 +161,12 @@ designers = [
   // }
 ];
 
+filters = {
+  "makes":[],
+  "models":[],
+  "designers":[]
+}
+
 function log_data() {
   console.log(designers);
   console.log(data);
@@ -177,6 +183,7 @@ function update_data() {
         .then(response => response.json())
         .then(designerDB => {
           designers = designerDB;
+          // console.log(designerDB);
 
           getCars();
           set_makes_models();
@@ -190,29 +197,20 @@ function update_data() {
 function set_makes_models() {
   makes = [];
   models = [];
-  makeSelect = document.getElementById("make-select")
   makesUl     = document.getElementById("makes-ul")
-  modelSelect = document.getElementById("model-select")
   modelsUl     = document.getElementById("models-ul")
-  makeSelect.options.length=1;
-  modelSelect.options.length=1;
-  makeSelect.options[0] = new Option("Makes", "", true, true)
-  modelSelect.options[0] = new Option("Models", "", true, true)
 
   data.forEach( car => {
     if(!makes.includes(car.make) && car.make != "") {
       makes.push(car.make);
-      // makeSelect.options[makeSelect.length] = new Option(car.make, car.make, false, false)
     }
     if(!models.includes(car.model) && car.model != "") {
       models.push(car.model);
-      // modelSelect.options[modelSelect.length] = new Option(car.model, car.model, false, false)
     }
   })
   makes.sort();
   models.sort();
   makes.forEach( make => {
-    makeSelect.options[makeSelect.length] = new Option(make, make, false, false)
 
     li = document.createElement("li")
     checkbox = document.createElement("input")
@@ -225,9 +223,7 @@ function set_makes_models() {
     li.appendChild(label)
     makesUl.appendChild(li)
   })
-  models.forEach( model => {
-    modelSelect.options[modelSelect.length] = new Option(model, model, false, false)
-  
+  models.forEach( model => {  
     li = document.createElement("li")
     checkbox = document.createElement("input")
     checkbox.type = "checkbox"
@@ -243,21 +239,23 @@ function set_makes_models() {
   // console.log(makes, models);
 }
 
-function getCars(make = "") {
+function getCars() {
   cars = []
-  if (make=="") {
-    console.log(make);
-  }
-  console.log(data[""]);
-  
   data.forEach(item => {
-    // console.log(item.name);
-    
-    if(item.make == make || make == "") {
+    if(filters["makes"].length==0 && filters["models"].length==0 && filters["designers"].length==0) {
+      cars.push(item)
+    }
+    else if(filters["makes"].includes(item.make)) {
       cars.push(item)
       // console.log(item);
-      }
-    });
+    }
+    else if(filters["models"].includes(item.model)) {
+      cars.push(item)
+    }
+    else if(filters["designers"].includes(item.author)) {
+      cars.push(item)
+    }
+  });
     generateCards(cars)
 }
 
@@ -274,16 +272,10 @@ function createCard(item) {
   template.querySelector('.card-img-bk').src = item.imageBack || "https://placehold.co/300";
   template.querySelector('.card-name').textContent = item.name;
   template.querySelector('.card-designer').textContent = item.author || "Unknown";
-      
-  
-  designers.forEach(d => {
-    if (item.author == d.author) {
-      designer = d;
-    }
-  });
 
-  const website = designers.find(item => item.author === item.author);
-  if(website) {
+  designer = designers[item.author]
+  // const website = designers.find(item => item.author === item.author);
+  if(designer) {
     template.querySelector('.card-designer').href = designer.website;
   }
   const gallery = data.find(item => item.gallery === item.gallery);
@@ -366,6 +358,17 @@ function update_info_col(card) {
   }
 }
 
+function update_filters() {
+  const makes     = document.querySelectorAll("#makes-ul     input[type='checkbox']:checked");
+  const models    = document.querySelectorAll("#models-ul    input[type='checkbox']:checked");
+  const designers = document.querySelectorAll("#designers-ul input[type='checkbox']:checked");
+  filters["makes"] = Array.from(makes, checkbox => checkbox.id)
+  filters["models"] = Array.from(models, checkbox => checkbox.id)
+  filters["designers"] = Array.from(designers, checkbox => checkbox.id)
+
+  getCars()
+}
+
 // window.onload = getCars();
 // window.onload = gen_test_card;
 window.onload = update_data;
@@ -374,5 +377,7 @@ window.onload = update_data;
 
 // document.querySelector(".ft-view-btn")
 
-document.getElementById("make-select").addEventListener("change", function() { getCars(this.value); })
-// document.getElementById("model-select").addEventListener("change", function() { getCars(this.value); })
+// MARK: event listeners
+document.getElementById("makes-ul").addEventListener("change", function() { update_filters(); })
+document.getElementById("models-ul").addEventListener("change", function() { update_filters(); })
+document.getElementById("designers-ul").addEventListener("change", function() { update_filters(); })
