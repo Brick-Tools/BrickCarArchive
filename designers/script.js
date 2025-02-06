@@ -142,12 +142,42 @@ async function handleSubmit() {
 }
 
 // ui for adding rows to db
-// document.getElementById("appendDesigner").addEventListener("click", function(){
-//   designer = document.getElementById("writeDesigner").value
-//   platform = document.getElementById("writeSite").value
-//   url = document.getElementById("writeURL").value
-//   console.log([designer,platform,url])
-// })
+async function appendRow(table, data) {
+  const { error } = await supabase
+  .from('pending')
+  .insert({ table: table, data:data })
+}
+document.getElementById("appendDesigner").addEventListener("click", function(){
+  designer = document.getElementById("writeDesigner").value
+  platform = document.getElementById("writeSite").value
+  url = document.getElementById("writeURL").value
+  if (url == "") {
+    console.log("Missing URL");
+    return;
+  }
+  
+  data = {
+    designer:designer,
+    platform:platform,
+    url:url
+  }
+  console.log(["designer", data])
+  // appendRow("designer", data)
+
+
+  document.getElementById("writeDesigner").value = ""
+  document.getElementById("writeSite").value = ""
+  document.getElementById("writeURL").value = ""
+})
+
+mode = false;
+document.getElementById("colorMode").addEventListener("click", function() {
+  document.body.classList.toggle("light-background");
+  document.body.classList.toggle("light-mode");
+  if (mode == false) { document.getElementById("colorMode").src = "../images/light.webp"; }
+  else { document.getElementById("colorMode").src = "../images/dark.webp"; }
+  mode = !mode;
+})
 
 window.onload = function() {
   getDesigners();
