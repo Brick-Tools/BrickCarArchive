@@ -141,7 +141,7 @@ async function handleSubmit() {
   
 }
 
-// ui for adding rows to db
+// adding rows to db
 async function appendRow(table, data) {
   const { error } = await supabase
   .from('pending')
@@ -149,8 +149,8 @@ async function appendRow(table, data) {
 }
 document.getElementById("appendDesigner").addEventListener("click", function(){
   designer = document.getElementById("writeDesigner").value
-  platform = document.getElementById("writeSite").value
-  url = document.getElementById("writeURL").value
+  url      = document.getElementById("writeURL").value
+  category = document.getElementById("writeCategory").value
   if (url == "") {
     console.log("Missing URL");
     return;
@@ -158,24 +158,24 @@ document.getElementById("appendDesigner").addEventListener("click", function(){
   
   data = {
     designer:designer,
-    platform:platform,
-    url:url
+    url:url,
+    category:category
   }
   console.log(["designer", data])
   // appendRow("designer", data)
 
 
   document.getElementById("writeDesigner").value = ""
-  document.getElementById("writeSite").value = ""
   document.getElementById("writeURL").value = ""
+  document.getElementById("writeCategory").value = ""
 })
 
 mode = false;
 document.getElementById("colorMode").addEventListener("click", function() {
   document.body.classList.toggle("light-background");
   document.body.classList.toggle("light-mode");
-  if (mode == false) { document.getElementById("colorMode").src = "../images/light.webp"; }
-  else { document.getElementById("colorMode").src = "../images/dark.webp"; }
+  if (mode == false) { document.getElementById("colorMode").src = "../images/light1080.webp"; }
+  else { document.getElementById("colorMode").src = "../images/dark1080.webp"; }
   mode = !mode;
 })
 

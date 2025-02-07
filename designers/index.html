@@ -14,7 +14,7 @@
 <body class="darkHTML">
     <div class="title inline relative">
         <h1>Designers</h1>
-        <img id="colorMode" class="selectable" src="../images/dark.webp" alt="toggle light/dark mode">
+        <img id="colorMode" class="selectable" src="../images/dark1080.webp" alt="toggle light/dark mode">
     </div>
 
     
@@ -23,36 +23,33 @@
             
             <div class="write">
                 <h2>Add Designer:</h2>
-                <form class="stackable" onsubmit="return handleSubmit()">
+                <!-- <form class="stackable" onsubmit="return handleSubmit()"> -->
+                <div class="grid-container">
                     <div>
                         <label for="writeDesigner">Name</label>
                         <input type="text" id="writeDesigner" name="writeDesigner">
                     </div>
                     <div>
-                        <label for="writeSite">Categories</label>
-                        <input list="websites" id="writeSite" name="writePlatform" /></label>
+                        <label for="writeURL">Website</label>
+                        <input type="text" id="writeURL" name="writeURL" placeholder="Required">
+                    </div>
+                    <div>
+                        <label for="writeCategory">Categories</label>
+                        <input list="category" id="writeCategory" name="writeCategory" placeholder="Supercar, Classic, Pickup"/></label>
                             <datalist id="Classics">
                             <datalist id="Supercars">
                             <datalist id="Trucks">
                             <datalist id="Military">
-                            <!-- <datalist id="websites">
-                            <option value="rebrickable">
-                            <option value="flickr">
-                            <option value="youtube">
-                            <option value="instagram">
-                            <option value="mecabricks">
-                            <option value="personal site"> -->
                             </datalist>
                     </div>
+        
                     <div>
-                        <label for="writeURL">URL</label>
-                        <input type="text" id="writeURL" name="writeURL">
+                        <input class="button" id="appendDesigner" type="button" value="Submit">
                     </div>
-        
-        
-                    <input id="appendDesigner" type="button" value="Submit">
-                </form>
+                </div>
+                <!-- </form> -->
             </div>
+
 
             <div class="tt scroll">
                 <table>
