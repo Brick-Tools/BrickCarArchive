@@ -12,18 +12,70 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body class="darkHTML">
-    <div class="title inline relative">
-        <h1>Designers</h1>
-        <img id="colorMode" class="selectable" src="../images/dark1080.webp" alt="toggle light/dark mode">
+    <div class="title inline">
+        <!-- <div> -->
+            <img class="" src="../favicons/brick1024.webp" alt="toggle light/dark mode">
+            <h1>Designers</h1>
+            <!-- <h1>Brick Car Archive<br>Designers</h1> -->
+        <!-- </div> -->
+        <div class="inline">
+            
+            
+            <svg id="menuOpen" class="selectable" viewBox="0 -960 560 560">
+                <path
+                    stroke-width="100"stroke-linecap="round"
+                    d="M 50.0405,-679.9595 H 509.87923"/>
+                <path
+                    stroke-width="100"stroke-linecap="round"
+                    d="M 50,-450 H 510"/>
+                <path
+                    stroke-width="100"stroke-linecap="round"
+                    d="M 50,-910 H 510"/>
+            </svg>
+            <svg id="menuClose" class="selectable" viewBox="0 -960 560 560">
+                <path class="icon"
+                    stroke-width="100"stroke-linecap="round"
+                    d="m 50,-910 460,460"/>
+                <path
+                    stroke-width="100"stroke-linecap="round"
+                    d="M 510,-910 50,-450"/>
+            </svg>
+        </div>
     </div>
 
+    <div id="alert" class="alert hidden"><p>Alert</p><p>Alert</p></div>
+
+    <nav class="slideRight">
+        <ul class="sidebar">
+            <!-- <li><svg id="menuClosee" class="selectable" viewBox="0 -960 560 560" height="42" width="42"><path class="icon" stroke-width="100"stroke-linecap="round" d="m 50,-910 460,460"/><path stroke-width="100"stroke-linecap="round" d="M 510,-910 50,-450"/></svg></li> -->
+            <li><img id="colorMode" class="selectable" src="../images/dark1080.webp" alt="toggle light/dark mode"></li>
+            <li><a target="_blank" href="https://brick-tools.com/"><h1>Brick-Tools Home</h1><img src="../images/bricks64.webp" alt=""></a></li>
+            <li><a target="_blank" href="https://converter.brick-tools.com/"><h1>LEGO Unit Converter</h1><img src="../images/bricks64.webp" alt=""></a></li>
+            <li><a target="_blank" href="https://brickcararchive.brick-tools.com/"><h1>Brick Car Archive</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
+            <li><a target="_blank" href="https://brickcararchive.brick-tools.com/designers/"><h1>Car Designers</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
+        </ul>
+    </nav>
     
     <div class="center">
         <div class="content scroll">
             
             <div class="write">
-                <h2>Add Designer:</h2>
-                <!-- <form class="stackable" onsubmit="return handleSubmit()"> -->
+                <details>
+                    <summary class="selectable">
+                        <h1>Add Designer</h1>
+                    </summary>
+                    <p>Requirements to be added:</p>
+                    <ul>
+                        <li>Has ever recreated a real car in LEGO / compatible</li>
+                        <li>Car is remotely minifigure scale</li>
+                        <li>If digital, all connections should work</li>
+                        <li>Website must show designer's cars</li>
+                        <li>Websites selling or sharing instructions, models, or kits are allowed</li>
+                        <li>Anyone suspected of taking credit of others' work will be investigated & removed</li>
+                    </ul>
+                    <p>*requirements may be relaxed in the future</p>
+                </details>
+
                 <div class="grid-container">
                     <div>
                         <label for="writeDesigner">Name</label>

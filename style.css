@@ -5,6 +5,13 @@ html {
   /* background: #262626; */
   color: gray;
   font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .contentGrid {
@@ -13,6 +20,7 @@ html {
   grid-template-rows: 1fr;
   grid-column-gap: 0;
   grid-row-gap: 0;
+  height: calc(100vh - 4rem);
 }
 
 .infoCol { grid-area: 1 / 1 / 2 / 2; }
@@ -23,13 +31,34 @@ html {
   margin: 0;
 }
 
+.title {
+  height: 4rem;
+  display: table;
+}
+.title h1 {
+  margin: 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.col{
+  /* outline: 1px solid wheat; */
+  margin: 0.5em;
+  padding: 0.5em;
+  overflow: auto; /* Enable scrolling for the center column */
+  max-height: 100vh; /* Restrict height to viewport to enable scrolling */
+  scrollbar-width:none;
+  /* scrollbar-width: thin;
+  scrollbar-color: gray black; */
+}
+
 .formContainer {
   display: flex;
   justify-content: center;
 }
 
 .infoCol {
-  max-width: 16em;
+  /* max-width: 16em; */
   /* border: 1px solid rebeccapurple; */
 }
 
@@ -37,7 +66,7 @@ html {
   /* display: grid; */
   /* place-items: center; */
   /* width: 100%; */
-  width: clamp(200px, 50%, 512px);
+  /* width: clamp(200px, 50%, 512px); */
   display: flex;
   align-items: center;
 }
@@ -91,10 +120,13 @@ html {
 } */
 
 .content {
-  /* display: grid; */
-  /* grid-template-columns: 1fr 1fr; */
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  /* display: flex; */
+  /* flex-flow: row wrap; */
+
   justify-content: center;
   /* grid-template-rows: 100px; */
   /* place-items: center; */
@@ -199,7 +231,7 @@ html {
 .card {
   padding: 1.5em;
   margin: 20px;
-  width: clamp(128px, 20vw, 300px);
+  /* width: clamp(128px, 20vw, 300px); */
   /* width: 25%; */
   /* outline: solid 1px darkgray; */
   /* background-color: #121212; */
@@ -237,7 +269,7 @@ html {
 }
 
 .card .img-container {
-  height: 15vw;
+  /* height: 15vw; */
   /* border: 1px solid rebeccapurple; */
 }
 .card .img-container img {

@@ -1,0 +1,42 @@
+[
+    {
+        "make":     "Ferrari",
+        "model":    "F40",
+        "imgTitle": "Alexandre Prévot from Nancy, France, CC BY-SA 2.0 &lt;https://creativecommons.org/licenses/by-sa/2.0&gt;, via Wikimedia Commons",
+        "imgHref":  "https://commons.wikimedia.org/wiki/File:Ferrari_F40_-_Flickr_-_Alexandre_Pr%C3%A9vot_(4).jpg",
+        "imgAlt":   "Ferrari F40 - Flickr - Alexandre Prévot (4)",
+        "imgSrc":   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Ferrari_F40_-_Flickr_-_Alexandre_Pr%C3%A9vot_%284%29.jpg/512px-Ferrari_F40_-_Flickr_-_Alexandre_Pr%C3%A9vot_%284%29.jpg?20131126233828"
+    },
+    {
+        "make":     "Chevrolet",
+        "model":    "NASCAR Next Gen Camaro ZL1",
+        "imgTitle": "HendrickMotorsports.com",
+        "imgHref":  "https://www.hendrickmotorsports.com/news/articles/112257/next-gen-camaro-unveiled-hendrick-motorsports-ready-for-new-challenge",
+        "imgAlt":   "Next-Gen-Chevrolet-Camaro-Driver-Side",
+        "imgSrc":   "https://d1moysbdfluzeo.cloudfront.net/uploads/production/Next-Gen-Chevrolet-Camaro-Driver-Side.jpg?mtime=20210505151909"
+    },
+    {
+        "make":     "Mercedes",
+        "model":    "AMG SL 63",
+        "imgTitle": "Damian B Oh, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons",
+        "imgHref":  "https://commons.wikimedia.org/wiki/File:Mercedes-AMG_R232_SL_63_4MATIC%2B_MANUFAKTUR_Patagonia_Red_Metallic_(6).jpg",
+        "imgAlt":   "Mercedes-AMG R232 SL 63 4MATIC+ MANUFAKTUR Patagonia Red Metallic (6)",
+        "imgSrc":   "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mercedes-AMG_R232_SL_63_4MATIC%2B_MANUFAKTUR_Patagonia_Red_Metallic_%286%29.jpg/512px-Mercedes-AMG_R232_SL_63_4MATIC%2B_MANUFAKTUR_Patagonia_Red_Metallic_%286%29.jpg?20230331150657"
+    },
+    {
+        "make":     "Mercedes",
+        "model":    "AMG G 63",
+        "imgTitle": "Alexander Migl, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons",
+        "imgHref":  "https://commons.wikimedia.org/wiki/File:Mercedes-AMG_G_63_(2018)_IMG_3429.jpg",
+        "imgAlt":   "Mercedes-AMG G 63 (2018) IMG 3429",
+        "imgSrc":   "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Mercedes-AMG_G_63_%282018%29_IMG_3429.jpg/512px-Mercedes-AMG_G_63_%282018%29_IMG_3429.jpg?20201005203503"
+    },
+    {
+        "make":     "",
+        "model":    "",
+        "imgTitle": "",
+        "imgHref":  "",
+        "imgAlt":   "",
+        "imgSrc":   ""
+    }
+]

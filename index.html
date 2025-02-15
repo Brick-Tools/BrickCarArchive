@@ -4,13 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Brick Car Archive</title>
+  <link rel="icon" type="image/webp" href="favicons/brick16.webp">
+  <link rel="icon" type="image/webp" href="favicons/brick32.webp">
+  <link rel="icon" type="image/webp" href="favicons/brick48.webp">
+  <link rel="icon" type="image/webp" href="favicons/brick64.webp">
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+
 </head>
 
 <body>
-  <div class="cf-turnstile" data-sitekey="0x4AAAAAAAw80Wv4EAIpdNP6" data-theme="light"></div>
   <div class="title">
   <h1>Brick Car Archive | TEST SITE</h1>
   </div>
@@ -43,7 +48,7 @@
   <div class="contentGrid">
 
     <!-- MARK: left -->
-    <div class="infoCol">
+    <div class="infoCol col">
       <!-- search bar -->
       <div class="formContainer">
         <form> <!-- action="/action_page.php" -->
@@ -56,14 +61,14 @@
       <details id="make-details" class="designerDetails filterDetails">
         <Summary>Makes</Summary>
         <div class="inline">
-          <div class="toggleSlide center">
-            <input type="radio" id="makeAnd" name="makeFilter" checked>
+          <div class="toggleSlide center" id="makes-mode">
+            <input type="radio" id="makeAnd" name="makeFilter"  value=0 checked>
             <label for="makeAnd"><abbr title="Exclude everything without these">And</abbr></label>
 
-            <input type="radio" id="makeOr" name="makeFilter">
+            <input type="radio" id="makeOr" name="makeFilter" value=1>
             <label for="makeOr"><abbr title="Inclclude all of these">Or</abbr></label>
   
-            <input type="radio" id="makeNot" name="makeFilter">
+            <input type="radio" id="makeNot" name="makeFilter" value=2>
             <label for="makeNot"><abbr title="Exclude these">Not</abbr></label>
           </div>
 
@@ -79,14 +84,14 @@
       <details id="model-details" class="designerDetails filterDetails">
         <Summary>Models</Summary>
         <div class="inline">
-          <div class="toggleSlide center">
-            <input type="radio" id="modelAnd" name="modelFilter" checked>
+          <div class="toggleSlide center" id="models-mode">
+            <input type="radio" id="modelAnd" name="modelFilter" value="0" checked>
             <label for="modelAnd"><abbr title="Exclude everything without these">And</abbr></label>
 
-            <input type="radio" id="modelOr" name="modelFilter">
+            <input type="radio" id="modelOr" name="modelFilter" value="1">
             <label for="modelOr"><abbr title="Inclclude all of these">Or</abbr></label>
   
-            <input type="radio" id="modelNot" name="modelFilter">
+            <input type="radio" id="modelNot" name="modelFilter" value="2">
             <label for="modelNot"><abbr title="Exclude these">Not</abbr></label>
           </div>
 
@@ -112,14 +117,14 @@
       <details class="designerDetails filterDetails">
         <Summary>Designers</Summary>
         <div class="inline">
-          <div class="toggleSlide center">
-            <input type="radio" id="designerAnd" name="designerFilter" checked>
+          <div class="toggleSlide center" id="designers-mode">
+            <input type="radio" id="designerAnd" name="designerFilter" value="0" checked>
             <label for="designerAnd"><abbr title="Exclude everything without these">And</abbr></label>
 
-            <input type="radio" id="designerOr" name="designerFilter">
+            <input type="radio" id="designerOr" name="designerFilter" value="1">
             <label for="designerOr"><abbr title="Inclclude all of these">Or</abbr></label>
   
-            <input type="radio" id="designerNot" name="designerFilter">
+            <input type="radio" id="designerNot" name="designerFilter" value="2">
             <label for="designerNot"><abbr title="Exclude these">Not</abbr></label>
           </div>
 
@@ -148,12 +153,15 @@
         </ul>
       </details>
 
-
+      <h2>Stats:</h2>
+      <p>12 Cars</p>
+      <p>1 Designer</p>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>a
       <!-- end left -->
     </div>
 
     <!-- MARK: mid -->
-    <div class="browserCol">
+    <div class="browserCol col">
       <!-- items -->
       <div class="content" id="cards-container">
 
@@ -161,11 +169,13 @@
     </div>
 
     <!-- MARK: right -->
-    <div class="detailsCol" id="detailsCol">
+    <div class="detailsCol col" id="detailsCol">
       <h2>Details</h2>
       <div class="center">
         <div class="details-media">
-          <img src="https://www.netcarshow.com/Mercedes-Benz-SL63_S_AMG_E_Performance-2024-1600-02.jpg" alt="">
+          <!-- <img src="https://www.netcarshow.com/Mercedes-Benz-SL63_S_AMG_E_Performance-2024-1600-02.jpg" alt=""> -->
+          <a id="realCarImg" target="_blank" title="Damian B Oh, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Mercedes-AMG_R232_SL_63_4MATIC%2B_MANUFAKTUR_Patagonia_Red_Metallic_(6).jpg"><img width="512" alt="Mercedes-AMG R232 SL 63 4MATIC+ MANUFAKTUR Patagonia Red Metallic (6)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mercedes-AMG_R232_SL_63_4MATIC%2B_MANUFAKTUR_Patagonia_Red_Metallic_%286%29.jpg/512px-Mercedes-AMG_R232_SL_63_4MATIC%2B_MANUFAKTUR_Patagonia_Red_Metallic_%286%29.jpg?20230331150657"></a>
+          <!-- <a title="Alexandre Prévot from Nancy, France, CC BY-SA 2.0 &lt;https://creativecommons.org/licenses/by-sa/2.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Ferrari_F40_-_Flickr_-_Alexandre_Pr%C3%A9vot_(4).jpg"><img width="512" alt="Ferrari F40 - Flickr - Alexandre Prévot (4)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Ferrari_F40_-_Flickr_-_Alexandre_Pr%C3%A9vot_%284%29.jpg/512px-Ferrari_F40_-_Flickr_-_Alexandre_Pr%C3%A9vot_%284%29.jpg?20131126233828"></a> -->
           <br>
           <div class="mecaFrame">
             <iframe class="iframe" frameborder="0" height="480" width="640" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" onmousewheel="" src=""></iframe>
@@ -174,14 +184,17 @@
       </div>
       <div class="model-info">
         <hr>
-        <p class="model-scale">Scale: 1:27</p>
-        <p class="model-make">Make: Mercedes</p>
-        <p class="model-model">Model: AMG SL 63</p>
-        <p class="model-year">Year: 2024</p>
-        <a class="designer-instagram button" href="" target="_blank">Website</a>
-        <a class="designer-instagram button" href="" target="_blank">Youtube</a>
-        <a class="designer-instagram button" href="" target="_blank">Instagram</a>
+        <p class="model-make" id="model-make">Make: Mercedes</p>
+        <p class="model-model" id="model-model">Model: AMG SL 63</p>
+        <p class="model-year" id="model-year">Year: 2024</p>
+        <p class="model-scale" id="model-scale">Scale: 1:27</p>
+        <a class="designer-instagram button" id="designer-website" href="" target="_blank">Website</a>
+        <a class="designer-instagram button" id="designer-youtube" href="" target="_blank">Youtube</a>
+        <a class="designer-instagram button" id="designer-instagram" href="" target="_blank">Instagram</a>
       </div>
+      
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>a
+
     </div>
   </div>
   

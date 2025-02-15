@@ -161,37 +161,101 @@ designers = [
   // }
 ];
 
+realCars = []
+
 filters = {
+  "modes":[],
   "makes":[],
   "models":[],
   "designers":[]
 }
 
+activeCards = {}
+
+// for reading from database
+const supabaseUrl = 'https://jbqrtvchsaonsmpwsjcb.supabase.co';
+// anon key
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpicXJ0dmNoc2FvbnNtcHdzamNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjcwNjg4MTQsImV4cCI6MjA0MjY0NDgxNH0.KGIZTN_Dm1Z_8G_uMnUCto-7eVLDH0IgUaG8oUwMwu8';
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+carCount = 0;
+
 function log_data() {
-  console.log(designers);
-  console.log(data);
+  console.log("data:",data);
+  console.log("designers:", designers);
+  console.log("realCars:", realCars);
+  console.log("carCount:", carCount);
+  // table = "designer,gallery,id,imageBack,imageFront,instructions,make,mecabricks,model,name,purchase\n"
+  // data.forEach(element => {
+  //   row = element["author"] + ",[" + element["gallery"] + "]," + element["id"] + "," + element["imageBack"] + "," + element["imageFront"] + "," + element["instructions"] + "," + element["make"] + "," + element["mecabricks"] + "," + element["model"] + "," + element["name"] + "," + element["purchase"] + "\n";
+  //   table += row
+  // });
+  // console.log(table);
 }
 
-function update_data() {
-  fetch("data/car.json")
-    .then(response => response.json())
-    .then(dataDB => {
-      // console.log(dataDB);
-      data = dataDB;
+async function update_data() {
+// async function getData() {
+  const { data: response, count, error } = await supabase
+    .from('cars')
+    .select('*', {count:"exact"})
+    .range(0, 7);
+    // .eq('make', 'BMW');
+    // data = response
 
-      fetch("data/designers.json")
+  if (error) {
+    console.error('Error fetching data:', error);
+  } else {
+    console.log('Data:', response);
+    data = response;
+    carCount = count
+  }
+
+  fetch("data/designers.json")
+      .then(response => response.json())
+      .then(designerDB => {
+        designers = designerDB;
+        // console.log(designerDB);
+
+        fetch("data/carReal.json")
         .then(response => response.json())
-        .then(designerDB => {
-          designers = designerDB;
-          // console.log(designerDB);
-
-          getCars();
-          set_makes_models();
+        .then(carRealDB => {
+          realCars = carRealDB;
         })
         .catch(error => console.error("Error fetching data", error));
+
+        getCars();
+        set_makes_models();
+      })
+      .catch(error => console.error("Error fetching data", error));
+
+  // }
+
+  // fetch("data/car.json")
+  //   .then(response => response.json())
+  //   .then(dataDB => {
+  //     // console.log(dataDB);
+  //     data = dataDB;
+
+  //     fetch("data/designers.json")
+  //       .then(response => response.json())
+  //       .then(designerDB => {
+  //         designers = designerDB;
+  //         // console.log(designerDB);
+
+  //         fetch("data/carReal.json")
+  //         .then(response => response.json())
+  //         .then(carRealDB => {
+  //           realCars = carRealDB;
+  //         })
+  //         .catch(error => console.error("Error fetching data", error));
+
+  //         getCars();
+  //         set_makes_models();
+  //       })
+  //       .catch(error => console.error("Error fetching data", error));
         
-    })
-    .catch(error => console.error("Error fetching data", error));
+  //   })
+  //   .catch(error => console.error("Error fetching data", error));
 }
 
 function set_makes_models() {
@@ -241,20 +305,62 @@ function set_makes_models() {
 
 function getCars() {
   cars = []
+  and = []
+  or = []
+  not = []
+  if      (filters["modes"][0] == "0") {  and.push(...filters["makes"])}
+  else if (filters["modes"][0] == "1") { or.push(...filters["makes"])}
+  else if (filters["modes"][0] == "2") { not.push(...filters["makes"])}
+  
+  if      (filters["modes"][1] == "0") { and.push(...filters["models"])}
+  else if (filters["modes"][1] == "1") { or.push(...filters["models"])}
+  else if (filters["modes"][1] == "2") { not.push(...filters["models"])}
+
+  if      (filters["modes"][2] == "0") { and.push(...filters["designers"])}
+  else if (filters["modes"][2] == "1") { or.push(...filters["designers"])}
+  else if (filters["modes"][2] == "2") { not.push(...filters["designers"])}
+
+  // console.log(and.length, or.length, not.length);
+  // console.log(and, or, not);
+  
+  
+  // console.log("Makes:", filters["makes"][0]);
+  // console.log("And", and, "Or", or, "not", not);
+
   data.forEach(item => {
     if(filters["makes"].length==0 && filters["models"].length==0 && filters["designers"].length==0) {
       cars.push(item)
+      activeCards[item.id] = item
+      // console.log("A");
+      
     }
-    else if(filters["makes"].includes(item.make)) {
+    // else if (and == [item.make, item.model, item.author]) { // ANDish behavior
+    else if (and.some(r=>[item.make, item.model, item.designer].includes(r))) { // OR behavior
       cars.push(item)
-      // console.log(item);
+      // console.log(item.name, and.some(r=>[item.make, item.model, item.designer].includes(r)));
     }
-    else if(filters["models"].includes(item.model)) {
-      cars.push(item)
-    }
-    else if(filters["designers"].includes(item.author)) {
-      cars.push(item)
-    }
+
+
+    // else if((and.includes(item.model) || and.length <=1) || (or.includes(item.model) || or.length<=1) && (!not.includes(item.model) || not.length<=1)) {
+    //   cars.push(item)
+    //   console.log("B");
+      
+    // }
+
+    // if(filters["makes"].length==0 && filters["models"].length==0 && filters["designers"].length==0) {
+    //   cars.push(item)
+    // }
+    // else if(filters["makes"].includes(item.make)) {
+    //   cars.push(item)
+    //   // console.log(item);
+    // }
+    // else if(filters["models"].includes(item.model)) {
+    //   cars.push(item)
+    // }
+    // else if(filters["designers"].includes(item.author)) {
+    //   cars.push(item)
+    // }
+
   });
     generateCards(cars)
 }
@@ -271,9 +377,9 @@ function createCard(item) {
   template.querySelector('.card-img').src = item.imageFront;
   template.querySelector('.card-img-bk').src = item.imageBack || "https://placehold.co/300";
   template.querySelector('.card-name').textContent = item.name;
-  template.querySelector('.card-designer').textContent = item.author || "Unknown";
+  template.querySelector('.card-designer').textContent = item.designer || "Unknown";
 
-  designer = designers[item.author]
+  designer = designers[item.designer]
   // const website = designers.find(item => item.author === item.author);
   if(designer) {
     template.querySelector('.card-designer').href = designer.website;
@@ -310,7 +416,7 @@ function generateCards(db) {
     imgFt = card.querySelector(".card-img");
     imgBk = card.querySelector(".card-imgBk");
 
-    card.querySelectorAll(".img-container, .card-img, .card-imgBk, .card, .name, .view-btns").forEach(element => {
+    card.querySelectorAll(".img-container, .card-img, .card-img-bk, .card, .name, .view-btns").forEach(element => {
       element.addEventListener("mouseup", function(event) {
         if(event.target === element) {
           Array.from(document.getElementsByClassName("card")).forEach(c => {
@@ -351,21 +457,58 @@ function toggleActiveView(btn) {
 }
 
 function update_info_col(card) {
-  mecaID = card.querySelector(".card-3d").href.substring(33);
+  car = activeCards[card.id]
+  // console.log(car);
   col = document.getElementById("detailsCol")
-  if (mecaID != "" ) {
-    // col.querySelector(".iframe").src = "https://mecabricks.com/en/player/"+mecaID;
+  realCarA = document.getElementById("realCarImg")
+  realCarImg = realCarA.querySelector("img")
+  
+  // real image
+  realCars.forEach(element => {
+    if (element.make == car.make && element.model == car.model) {
+      console.log("E");
+      
+      realCarA.title = element.imgTitle
+      realCarA.href = element.imgHref
+      realCarImg.alt = element.imgAlt
+      realCarImg.src = element.imgSrc
+    }
+  });
+  // mecabricks
+  if (car.mecabricks != "" ) {
+    // col.querySelector(".iframe").src = "https://mecabricks.com/en/player/"+car.mecabricks;
   }
+  // make, model
+  if (car.make != null)  {document.getElementById("model-make").innerText="Make: " + car.make}
+  if (car.model != null) {document.getElementById("model-model").innerText="Model: " + car.model}
+  if (car.year != null) {document.getElementById("model-year").innerText="Year: " + car.year}
+  if (car.scale != null) {document.getElementById("model-scale").innerText="Scale: 1: " + car.scale}
+      
+    // socials
+    if (car.designer in designers) {
+      if (designers[car.designer].website != null) {document.getElementById("designer-website").href = designers[car.designer].website}
+      if (designers[car.designer].youtube != null) {document.getElementById("designer-youtube").href = designers[car.designer].youtube}
+      if (designers[car.designer].instagram != null) {document.getElementById("designer-instagram").href = designers[car.designer].instagram}
+    }
 }
 
 function update_filters() {
   const makes     = document.querySelectorAll("#makes-ul     input[type='checkbox']:checked");
   const models    = document.querySelectorAll("#models-ul    input[type='checkbox']:checked");
   const designers = document.querySelectorAll("#designers-ul input[type='checkbox']:checked");
+  
   filters["makes"] = Array.from(makes, checkbox => checkbox.id)
   filters["models"] = Array.from(models, checkbox => checkbox.id)
   filters["designers"] = Array.from(designers, checkbox => checkbox.id)
+  
+  const makesMode = document.querySelector("#makes-mode     input[type='radio']:checked");
+  const modelsMode = document.querySelector("#models-mode     input[type='radio']:checked");
+  const designersMode = document.querySelector("#designers-mode     input[type='radio']:checked");
 
+  filters["modes"][0] = makesMode.value;
+  filters["modes"][1] = modelsMode.value;
+  filters["modes"][2] = designersMode.value;
+  
   getCars()
 }
 
