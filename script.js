@@ -197,8 +197,8 @@ async function update_data() {
 // async function getData() {
   const { data: response, count, error } = await supabase
     .from('cars')
-    .select('*', {count:"exact"})
-    .range(0, 7);
+    .select('*', {count:"exact"});
+    // .range(0, 7);
     // .eq('make', 'BMW');
     // data = response
 
