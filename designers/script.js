@@ -7,6 +7,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 data = {}
+dataArr = []
 async function getDesigners() {
     const { data: response, error } = await supabase
     .from('designers')
@@ -22,17 +23,19 @@ async function getDesigners() {
       updateTable(designer);
       
       data[designer["id"]] = designer
+      dataArr.push(designer)
     });
   }
   console.log('Data:', data);
 }
 
+// MARK: add row
 function updateTable(designer) {
   table = document.getElementById("designersTable")
   
   row = document.createElement("template")
   row.innerHTML = `
-    <tr id="">
+    <tr id="" data-details="">
       <td class="designerCol"></td>
       <td class="platformCol">
         <a class="platforms" href="" target="_blank">
@@ -50,7 +53,7 @@ function updateTable(designer) {
           </ul>
         </div>
       </td>
-      <td class="latestCol"></td>
+      <!-- <td class="latestCol"></td> -->
     </tr>
   `;
   
@@ -78,9 +81,11 @@ function updateTable(designer) {
         message = "Category already listed"
       }
       else {
-        message = `Added ${category} to ${designer["designer"]}`
-        data[id]["categories"].push(category)
-        appendRow("test", [id, "new_category", category])
+        if (category != "") {
+          message = `Added ${category} to ${designer["designer"]}`
+          data[id]["categories"].push(category)
+          appendRow("test", [id, "new_category", category])
+        }
       }
       
       show_alert(message, "")
@@ -96,7 +101,7 @@ function updateTable(designer) {
     // categories = designer["categories"].join("<br>")
 
     designer["categories"].forEach(element => {
-      console.log(element);
+      // console.log(element);
       item = document.createElement('li')
       item.textContent=element
       row.content.querySelector("ul").appendChild(item)
@@ -114,7 +119,9 @@ function updateTable(designer) {
   row.content.querySelector(".platformName").innerHTML = getSiteName(designer["platforms"][designer["featured_platform"]][1])[0]
   row.content.querySelector(".platforms").href         = url
   // row.content.querySelector(".categories").innerHTML   = categories
-  row.content.querySelector(".latestCol").innerHTML    = designer["latest"]  
+  
+  // future update
+  // row.content.querySelector(".latestCol").innerHTML    = designer["latest"]  
   
   if (designer?.categories?.length > 2) {
     row.content.querySelector(".categories").insertAdjacentHTML("afterend", `<p class="showMore selectable">Show More</p>`);
@@ -129,8 +136,50 @@ function updateTable(designer) {
       }
     })
   }
+
+  rowDetails = ""
+  if (designer["features"]) {
+    for (let feature of designer["features"]) {
+      rowDetails += `<a href="${feature[0]}" target="_blank"><img src="${feature[1]}"></a>`
+    }
+  }
+  row.content.getElementById(designer["id"]).dataset.details = `<div><p class="selectable addCat">Add Features</p><div class="rowDetails">${rowDetails}</div></div>`
+
   table.appendChild(row.content)    
 }
+
+// MARK: expand row details
+document.getElementById("table").addEventListener("click", (e) => {
+  const blockedClasses = ["selectable", "platformName", "writeCategory"];
+  if (blockedClasses.some(cls => e.target.classList.contains(cls))) {return}
+  const clickedRow = e.target.closest(".main-row");
+    if (!clickedRow) return;
+
+    // Remove any existing detail row
+    const nextRow = clickedRow.nextElementSibling;
+    if (nextRow && nextRow.classList.contains("detail-row")) {
+      nextRow.remove();
+      return;
+    }
+
+    // Clean up other open detail rows
+    document.querySelectorAll(".detail-row").forEach(r => r.remove());
+
+    const details = clickedRow.dataset.details;
+    const colCount = clickedRow.children.length;
+    
+    const detailRow = document.createElement("tr");
+    detailRow.className = "detail-row";
+    detailRow.innerHTML = `<td colspan="${colCount}">${details}</td>`;
+    detailRow.style.backgroundColor = window.getComputedStyle(clickedRow).backgroundColor;
+      
+    clickedRow.insertAdjacentElement("afterend", detailRow);
+
+    let mainRows = document.querySelectorAll("tr.main-row"); 
+    mainRows.forEach((row, index) => {
+      row.style.backgroundColor = index % 2 === 0 ? "var(--rowOdd)" : "var(--rowEven)";
+    });
+})
 
 function getSiteName(url) {
   // Use a regular expression to match the site name
@@ -229,7 +278,7 @@ async function handleSubmit() {
 // adding rows to db
 async function appendRow(table, data) {
   console.log(`Added to table "${table}":`, data) // TESTING
-  return
+  // return
 
   const { error } = await supabase
   .from('pending')
@@ -335,3 +384,74 @@ document.getElementById("menuClose").addEventListener("click", function() {
   document.getElementById("menuOpen").style.display = "inline";
 })
 
+// MARK: search
+searchDesigner = ""
+searchCategory = ""
+searchPlatform = ""
+
+document.getElementById("searchDesigner").addEventListener("input", function(event) {
+  searchDesigner = event.target.value.toLowerCase().trim()
+  search()
+})
+document.getElementById("searchPlatform").addEventListener("input", function(event) {
+  searchPlatform = event.target.value.toLowerCase().trim()
+  search()
+})
+document.getElementById("searchCategory").addEventListener("input", function(event) {
+  searchCategory = event.target.value.toLowerCase().trim()
+  search()
+})
+
+function search() {
+  designer = searchDesigner
+  platform = searchPlatform
+  category = searchCategory
+  canidates = dataArr
+  results = []
+  document.getElementById("designersTable").innerHTML = "";
+
+
+  canidates.forEach(element => {if (element["designer"].toLowerCase().includes(designer)) { results.push(element)}})
+  canidates = results
+  
+  if (platform != "") {
+    results = []
+    canidates.forEach(element => {
+      if (element["platforms"] != null) {
+        element["platforms"].some(cat => {          
+          if (cat[0].toLowerCase().includes(platform)) {      
+            results.push(element)
+            return true
+          }
+        });
+      }
+    })
+  }
+  canidates = results
+
+  if (category != "") {
+    results = []
+    canidates.forEach(element => {
+      if (element["categories"] != null) {
+        canidates = []
+        element["categories"].some(cat => {          
+          if (cat.toLowerCase().includes(category)) {      
+            results.push(element)
+            return true
+          }
+        });
+      }
+    })
+  }
+
+  results.forEach(element => { updateTable(element) });
+}
+
+document.getElementById("submitFeedbackBtn").addEventListener("click", function() {
+  console.log();
+  text = feedback.value.trim()
+  if (text != "") {
+    appendRow("feedback", text)
+    show_alert("Submitted Feedback,", "Thank you")
+  }
+})

@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body class="darkHTML">
+    <!-- MARK: Title -->
     <div class="title inline">
         <!-- <div> -->
             <img class="" src="../favicons/brick1024.webp" alt="toggle light/dark mode">
@@ -43,8 +44,10 @@
         </div>
     </div>
 
+    <!-- Popup -->
     <div id="alert" class="alert hidden"><p>Alert</p><p>Alert</p></div>
 
+    <!-- MARK: Nav -->
     <nav class="slideRight">
         <ul class="sidebar">
             <!-- <li><svg id="menuClosee" class="selectable" viewBox="0 -960 560 560" height="42" width="42"><path class="icon" stroke-width="100"stroke-linecap="round" d="m 50,-910 460,460"/><path stroke-width="100"stroke-linecap="round" d="M 510,-910 50,-450"/></svg></li> -->
@@ -53,64 +56,85 @@
             <li><a target="_blank" href="https://converter.brick-tools.com/"><h1>LEGO Unit Converter</h1><img src="../images/bricks64.webp" alt=""></a></li>
             <li><a target="_blank" href="https://brickcararchive.brick-tools.com/"><h1>Brick Car Archive</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
             <li><a target="_blank" href="https://brickcararchive.brick-tools.com/designers/"><h1>Car Designers</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
+            <div id="feedbackContainer">
+                <h2>Provide Feedback</h2>
+                <textarea name="" id="feedback"></textarea>
+                <button id="submitFeedbackBtn" type="button">Submit</button>
+            </div>
         </ul>
     </nav>
-    
+
+    <!-- Content -->
     <div class="center">
-        <div class="content scroll">
+        <div class="content"> <!-- removed class content-->
             
+            <!-- MARK: Input -->
             <div class="write">
                 <details>
+
                     <summary class="selectable">
                         <h1>Add Designer</h1>
                     </summary>
-                    <p>Requirements to be added:</p>
-                    <ul>
-                        <li>Has ever recreated a real car in LEGO / compatible</li>
-                        <li>Car is remotely minifigure scale</li>
-                        <li>If digital, all connections should work</li>
-                        <li>Website must show designer's cars</li>
-                        <li>Websites selling or sharing instructions, models, or kits are allowed</li>
-                        <li>Anyone suspected of taking credit of others' work will be investigated & removed</li>
-                    </ul>
-                    <p>*requirements may be relaxed in the future</p>
-                </details>
 
-                <div class="grid-container">
-                    <div>
-                        <label for="writeDesigner">Name</label>
-                        <input type="text" id="writeDesigner" name="writeDesigner">
+                    <div class="grid-container">
+                        <div>
+                            <label for="writeDesigner">Name</label>
+                             <!-- <h2>Name</h2> -->
+                            <input type="text" id="writeDesigner" name="writeDesigner">
+                        </div>
+                        <div>
+                            <label for="writeURL">Website</label>
+                             <!-- <h2>Website</h2> -->
+                            <input type="text" id="writeURL" name="writeURL" placeholder="Required">
+                        </div>
+                        <div>
+                            <label for="writeCategory">Categories</label>
+                             <!-- <h2>Categories</h2> -->
+                            <input list="category" id="writeCategory" name="writeCategory" placeholder="Supercar, Classic, etc"/></label>
+                                <datalist id="Classics">
+                                <datalist id="Supercars">
+                                <datalist id="Trucks">
+                                <datalist id="Military">
+                                </datalist>
+                        </div>
+            
+                        <div>
+                            <input class="button" id="appendDesigner" type="button" value="Submit">
+                        </div>
                     </div>
-                    <div>
-                        <label for="writeURL">Website</label>
-                        <input type="text" id="writeURL" name="writeURL" placeholder="Required">
-                    </div>
-                    <div>
-                        <label for="writeCategory">Categories</label>
-                        <input list="category" id="writeCategory" name="writeCategory" placeholder="Supercar, Classic, Pickup"/></label>
-                            <datalist id="Classics">
-                            <datalist id="Supercars">
-                            <datalist id="Trucks">
-                            <datalist id="Military">
-                            </datalist>
-                    </div>
-        
-                    <div>
-                        <input class="button" id="appendDesigner" type="button" value="Submit">
-                    </div>
-                </div>
+
+                    <details>
+                        <summary class="selectable">Requirements</summary>
+                        <p>Requirements to be added:</p>
+                        <ul>
+                            <li>Has ever recreated a real car in LEGO / compatible</li>
+                            <li>Car is remotely minifigure scale</li>
+                            <li>If digital, all connections should work</li>
+                            <li>Website must show designer's cars</li>
+                            <li>Websites selling or sharing instructions, models, or kits are allowed</li>
+                            <li>Anyone suspected of taking credit of others' work will be investigated & removed</li>
+                        </ul>
+                        <p>*requirements may change in the future</p>
+                    </details>
+                </details>
                 <!-- </form> -->
             </div>
 
+            <!-- <label id="filtersLabel" for="filters">Filters</label> -->
+            <div id="filters" class="filters">
+                <input type="text" name="" id="searchDesigner" placeholder="Filter Designer" class="search">
+                <input type="text" name="" id="searchPlatform" placeholder="Filter Platform" class="search">
+                <input type="text" name="" id="searchCategory" placeholder="Filter Category" class="search">
+            </div>
 
-            <div class="tt scroll">
+            <div id="table" class="tt">
                 <table>
                     <thead>
                         <tr>
                             <th>Designer</th>
                             <th>Platforms</th>
                             <th>Categories</th>
-                            <th>Latest MOC</th>
+                            <!-- <th>Latest MOC</th> -->
                         </tr>
                     </thead>
                     <tbody id="designersTable">
