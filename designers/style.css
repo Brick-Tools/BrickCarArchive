@@ -181,7 +181,7 @@ nav li:first-child {
   height: 128px;
 }
 .sidebar {
-  position: fixed;
+  position: absolute;
   /* top: 0; */
   right: 0;
   height: 100vh;
