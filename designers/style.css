@@ -39,6 +39,7 @@ body {
   margin: 0;
   padding: 0;
 /*   overflow: clip; */
+  overflow-x: clip;
 }
 .light-background {
   background-image: url("../images/wallpaperLightA2x.webp");
