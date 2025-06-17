@@ -14,11 +14,8 @@
 <body>
     <!-- MARK: Title -->
     <div class="title inline">
-        <!-- <div> -->
-            <img src="../favicons/brick1024.webp" alt="toggle light/dark mode">
-            <h1>Designers</h1>
-            <!-- <h1>Brick Car Archive<br>Designers</h1> -->
-        <!-- </div> -->
+        <img src="../favicons/brick1024.webp" alt="toggle light/dark mode">
+        <h1>Designers</h1>
         <div class="inline">
             
             
@@ -46,7 +43,6 @@
 
 
     <!-- MARK: Nav -->
-    <!-- <li><svg id="menuClosee" class="selectable" viewBox="0 -960 560 560" height="42" width="42"><path class="icon" stroke-width="100"stroke-linecap="round" d="m 50,-910 460,460"/><path stroke-width="100"stroke-linecap="round" d="M 510,-910 50,-450"/></svg></li> -->
     <nav class="slideRight">
         <ul class="sidebar">
             <div class="navLinks">
@@ -67,7 +63,8 @@
                 <h2>Updates</h2>
                 <div class="updates">
                     <ul id="updates">
-                        <li>2025.06.17 | Improved side nav, added updates section</li>
+                        <li>2025.06.17 | Added click away to close nav, improved main layout spacing</li>
+                        <li>2025.06.16 | Improved side nav, added updates section</li>
                     </ul>
                 </div>
             </div>
@@ -78,31 +75,12 @@
     <!-- Popup -->
     <div id="alert" class="alert hidden"><p>Alert</p><p>Alert</p></div>
 
-    <!-- <nav class="sideNav">
-        <ul class="sidebar">
-            <li><img id="colorMode" class="selectable" src="../images/dark1080.webp" alt="toggle light/dark mode"></li>
-            <li><a target="_blank" href="https://brick-tools.com/"><h1>Brick-Tools Home</h1><img src="../images/bricks64.webp" alt=""></a></li>
-            <li><a target="_blank" href="https://converter.brick-tools.com/"><h1>LEGO Unit Converter</h1><img src="../images/bricks64.webp" alt=""></a></li>
-            <li><a target="_blank" href="https://brickpieces.brick-tools.com/"><h1>Brick Pieces</h1><img src="../images/BrickPieces.webp" alt=""></a></li>
-            <li><a target="_blank" href="https://brickcararchive.brick-tools.com/"><h1>Brick Car Archive</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
-            <li><a target="_blank" href="https://brickcararchive.brick-tools.com/designers/"><h1>Car Designers</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
-            <li><a target="_blank" href="https://brickcararchive.brick-tools.com/designers/"><h1>Car Designers</h1><img src="../favicons/brick1024.webp" alt=""></a></li>
-            <div id="feedbackContainer">
-                <h2>Provide Feedback</h2>
-                <textarea name="" id="feedback"></textarea>
-                <button id="submitFeedbackBtn" type="button">Submit</button>
-            </div>
-        </ul>
-    </nav> -->
-
-<!-- <div class="navContainer">
-</div> -->
 <!-- Content -->
 <main class="center">
 
     <div class="mid">
 
-        <div class="content"> <!-- removed class content-->
+        <div class="content">
             <!-- MARK: Input -->
             <div class="write">
                 <details>
@@ -114,17 +92,14 @@
                     <div class="grid-container">
                         <div>
                             <label for="writeDesigner">Name</label>
-                                <!-- <h2>Name</h2> -->
                             <input type="text" id="writeDesigner" name="writeDesigner">
                         </div>
                         <div>
                             <label for="writeURL">Website</label>
-                                <!-- <h2>Website</h2> -->
                             <input type="text" id="writeURL" name="writeURL" placeholder="Required">
                         </div>
                         <div>
                             <label for="writeCategory">Categories</label>
-                                <!-- <h2>Categories</h2> -->
                             <input list="category" id="writeCategory" name="writeCategory" placeholder="Supercar, Classic, etc"/></label>
                                 <datalist id="Classics">
                                 <datalist id="Supercars">
@@ -152,10 +127,8 @@
                         <p>*requirements may change in the future</p>
                     </details>
                 </details>
-                <!-- </form> -->
             </div>
     
-            <!-- <label id="filtersLabel" for="filters">Filters</label> -->
             <div id="filters" class="filters">
                 <input type="text" name="" id="searchDesigner" placeholder="Filter Designer" class="search">
                 <input type="text" name="" id="searchPlatform" placeholder="Filter Platform" class="search">
@@ -169,7 +142,8 @@
                             <th>Designer</th>
                             <th>Platforms</th>
                             <th>Categories</th>
-                            <!-- <th>Latest MOC</th> -->
+                            <!-- future update -->
+                            <!-- <th>Featured MOC</th> -->
                         </tr>
                     </thead>
                     <tbody id="designersTable">

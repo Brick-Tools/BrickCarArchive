@@ -98,7 +98,6 @@ function updateTable(designer) {
   designer["latest"] = "*link to latest"
   
   if ((designer["categories"])){
-    // categories = designer["categories"].join("<br>")
 
     designer["categories"].forEach(element => {
       // console.log(element);
@@ -118,7 +117,6 @@ function updateTable(designer) {
   row.content.querySelector(".designerCol").innerHTML  = designer["designer"]
   row.content.querySelector(".platformName").innerHTML = getSiteName(designer["platforms"][designer["featured_platform"]][1])[0]
   row.content.querySelector(".platforms").href         = url
-  // row.content.querySelector(".categories").innerHTML   = categories
   
   // future update
   // row.content.querySelector(".latestCol").innerHTML    = designer["latest"]  
@@ -210,9 +208,7 @@ function getUrl(platform, row) {
   site = platform[0]
   id = platform[1]
   
-  if (site == "rebrickable") {
-    // console.log(row.querySelector(".platforms"));
-    
+  if (site == "rebrickable") {    
     row.querySelector(".platformIcon").src = "icons/rebrickable.webp"
     return "https://rebrickable.com/users/"+id+"/mocs/"
   }
@@ -241,43 +237,10 @@ function getUrl(platform, row) {
   else { console.log(platform, row, site, id); }
 }
 
-// submit data // JUST TESTING -- NOT FOR USE
-async function handleSubmit() {
-  designer = document.getElementById("writeDesigner").value
-  platform = document.getElementById("writePlatform").value
-  category = document.getElementById("writeCategory").value
-
-  // console.log(designer, getSiteName(platform), category);
-
-  const { data, error } = await supabase
-    .from ("designers")
-    // .select("*")
-    .update({ platforms: [getSiteName(platform)] })
-    // .update({
-    //   platforms: supabase.rpc('array_append', {
-    //     platforms: getSiteName(platform)  // The value you want to append
-    //   })
-    // })
-    // .update({ platforms: supabase.raw('array_append(platforms, ?)', [getSiteName(platform)]) })
-    .eq('id', 3);
-    
-    
-    // .update({ things: supabase.raw('array_append(things, ?)', ['thing']) })
-    
-    if (error) {
-      console.log(error);
-    }
-    if (data) {
-      console.log(data);
-    }
-    
-  // .insert([{designer, getSiteName(platform), category}])
-  
-}
 
 // adding rows to db
 async function appendRow(table, data) {
-  console.log(`Added to table "${table}":`, data) // TESTING
+  console.log(`Added to table "${table}":`, data)
   // return
 
   const { error } = await supabase
@@ -371,17 +334,28 @@ document.getElementById("colorMode").addEventListener("click", function() {
 })
 
 // open / close menu
+function closeNav() {
+  document.querySelector("nav").classList.add("slideRight")
+  
+  document.getElementById("menuClose").style.display = "none";
+  document.getElementById("menuOpen").style.display = "inline";
+
+  document.querySelector("main").classList.remove("nav-open");
+}
 document.getElementById("menuOpen").addEventListener("click", function() {
   document.querySelector("nav").classList.remove("slideRight")
 
   document.getElementById("menuOpen").style.display = "none";
   document.getElementById("menuClose").style.display = "inline";
+
+  document.querySelector("main").classList.add("nav-open");
 })
-document.getElementById("menuClose").addEventListener("click", function() {
-  document.querySelector("nav").classList.add("slideRight")
-  
-  document.getElementById("menuClose").style.display = "none";
-  document.getElementById("menuOpen").style.display = "inline";
+document.getElementById("menuClose").addEventListener("click", function() { closeNav(); })
+
+document.querySelector("main").addEventListener("click", function() {
+  if (window.innerWidth <= 1310 && !document.querySelector("nav").classList.contains("slideRight")) {
+    closeNav();    
+  }
 })
 
 // MARK: search
