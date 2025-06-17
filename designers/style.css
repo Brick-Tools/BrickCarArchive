@@ -40,7 +40,7 @@ body {
   padding: 0;
   /* overflow: clip; */
   overflow-x: clip;
-  position: relative;
+  /* position: relative; */
 }
 .light-background {
   background-image: url("../images/wallpaperLightA2x.webp");
@@ -113,7 +113,7 @@ svg {
   background-color: var(--titleBackground);
   backdrop-filter: blur(2px);
   position: sticky;
-  width: 100vw;
+  width: 100%;
   top: 0;
   z-index: 9;
   /* height: 100vh; */
