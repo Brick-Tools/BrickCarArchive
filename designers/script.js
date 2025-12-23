@@ -4,12 +4,12 @@ window.onload = function() {
 
 const supabaseUrl = 'https://jbqrtvchsaonsmpwsjcb.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpicXJ0dmNoc2FvbnNtcHdzamNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjcwNjg4MTQsImV4cCI6MjA0MjY0NDgxNH0.KGIZTN_Dm1Z_8G_uMnUCto-7eVLDH0IgUaG8oUwMwu8';
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseClient = window.supabase.createClient( supabaseUrl, supabaseKey);
 
 data = {}
 dataArr = []
 async function getDesigners() {
-    const { data: response, error } = await supabase
+    const { data: response, error } = await supabaseClient
     .from('designers')
     .select('*')
     .order('id', { ascending: true })
@@ -243,7 +243,7 @@ async function appendRow(table, data) {
   console.log(`Added to table "${table}":`, data)
   // return
 
-  const { error } = await supabase
+  const { error } = await supabaseClient
   .from('pending')
   .insert({ table: table, data:data })
   if (error) {
@@ -428,4 +428,5 @@ document.getElementById("submitFeedbackBtn").addEventListener("click", function(
     appendRow("feedback", text)
     show_alert("Submitted Feedback,", "Thank you")
   }
+
 })
